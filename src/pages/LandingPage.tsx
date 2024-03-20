@@ -14,7 +14,7 @@ function Landingpage() {
         type="text"
         value={name}
         onChange={(e) => setName(e.target.value)}
-        placeholder="skriv ditt namn här..."
+        placeholder="Skriv ditt namn här..."
       />
       <button onClick={handleLogin}> Logga in</button>
     </div>
