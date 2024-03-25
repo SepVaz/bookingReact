@@ -1,0 +1,29 @@
+{
+    "data": [
+        {
+            "id": 1,
+            "name": "Sepideh Vaziri",
+            "bookings": []
+        },
+        {
+            "id": 2,
+            "name": "Murat Acar",
+            "bookings": []
+        },
+        {
+            "id": 3,
+            "name": "Michel Gorjizadeh",
+            "bookings": []
+        },
+        {
+            "id": 4,
+            "name": "Johan Nihlén",
+            "bookings": []
+        },
+        {
+            "id": 5,
+            "name": "Jakob Malm",
+            "bookings": []
+        }
+    ]
+}

@@ -1,12 +1,8 @@
+import { ICleaners } from "../Cleaners"
 
 
 
-interface Props {
-    name: string
-    id: number
-}
-
-export default function Bookings(props: Props) {
+export default function Bookings(props: ICleaners) {
 
   return (
     <>
