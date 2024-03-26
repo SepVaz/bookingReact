@@ -1,20 +1,27 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { Cleaners } from "../Cleaners";
-import { useState } from "react";
-import Bookings from "./Bookings";
+import { ICleaners, fetchData } from "../Cleaners";
+import React, { useState, useEffect } from "react";
 
+/* import Bookings from "./Bookings"; */
 
-export function MyPage() {
-  const [booked, setBooked] = useState<ICleaners[]>();
-  const [done, setDone] = useState<ICleaners[]>();
+function MyPage() {
+  const [data, setData] = useState<ICleaners[]>([]);
+
+  useEffect(() => {
+    fetchData();
+    
+  }, []);
+
+  const [booked, setBooked] = useState<ICleaners[]>([]);
+  const [done, setDone] = useState<ICleaners[]>([]);
   const location = useLocation();
   const navigate = useNavigate();
   const { name } = location.state;
 
-  const cBooked = booked.map((c) => (
-    <Bookings key={c.id} name={c.name} id={c.id}></Bookings>
+  /*   const cBooked = booked.map((c) => (
+    <Bookings key={c.id} name={c.name} id={c.id} bookings={[]}></Bookings>
   ));
-
+ */
   function handleLogout() {
     navigate("/");
   }
@@ -50,7 +57,26 @@ export function MyPage() {
           Boka städning
         </button>
       </form>
-      {cBooked}
+      <div>
+        <div>
+          {data.map((d) => (
+            <div key={d.id}>
+              <h2>{d.name}</h2>
+              <ul>
+                {d.bookings.map((d) => (
+                  <li
+                    key={d.id}
+                  >{`${d.date} at ${d.time}`}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
+
+
 }
+
+export default MyPage

@@ -1,29 +1,63 @@
 {
-    "data": [
-        {
-            "id": 1,
-            "name": "Sepideh Vaziri",
-            "bookings": []
-        },
-        {
-            "id": 2,
-            "name": "Murat Acar",
-            "bookings": []
-        },
-        {
+    "data": {
+        "customer" : [
+            {
+                "id": 1,
+                "name": "Micke Ly",
+                "bookings": []
+            },
+               { "id": 2,
+                "name": "Frodo Baggins",
+                "bookings": []
+            }
+        ],
+         "cleaner": [
+            {
             "id": 3,
-            "name": "Michel Gorjizadeh",
+            "name": "Sepideh Vaziri",
+            "date": "",
+            "time": "",
             "bookings": []
         },
         {
             "id": 4,
-            "name": "Johan Nihlén",
+            "name": "Murat Acar",
+            "date": "",
+            "time": "",
             "bookings": []
         },
         {
             "id": 5,
-            "name": "Jakob Malm",
+            "name": "Michel Gorjizadeh",
+            "date": "",
+            "time": "",
             "bookings": []
+        },
+        {
+            "id": 6,
+            "name": "Johan Nihlén",
+            "date": "",
+            "time": "",
+            "bookings": []
+        },
+        {
+            "id": 7,
+            "name": "Jakob Malm",
+            "date": "",
+            "time": "",
+            "bookings": []
+        }
+    ],
+    "booking": [
+        {
+            "id":8,
+            "date": "",
+            "time": ""
+        },
+        {
+            "id": 9,
+            "date": "",
+            "time": ""
         }
     ]
 }
