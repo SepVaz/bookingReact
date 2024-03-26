@@ -1,63 +1,65 @@
 {
     "data": {
-        "customer" : [
+        "customer": [
             {
                 "id": 1,
                 "name": "Micke Ly",
                 "bookings": []
             },
-               { "id": 2,
+            {
+                "id": 2,
                 "name": "Frodo Baggins",
                 "bookings": []
             }
         ],
-         "cleaner": [
+        "cleaner": [
             {
-            "id": 3,
-            "name": "Sepideh Vaziri",
-            "date": "",
-            "time": "",
-            "bookings": []
-        },
-        {
-            "id": 4,
-            "name": "Murat Acar",
-            "date": "",
-            "time": "",
-            "bookings": []
-        },
-        {
-            "id": 5,
-            "name": "Michel Gorjizadeh",
-            "date": "",
-            "time": "",
-            "bookings": []
-        },
-        {
-            "id": 6,
-            "name": "Johan Nihlén",
-            "date": "",
-            "time": "",
-            "bookings": []
-        },
-        {
-            "id": 7,
-            "name": "Jakob Malm",
-            "date": "",
-            "time": "",
-            "bookings": []
-        }
-    ],
-    "booking": [
-        {
-            "id":8,
-            "date": "",
-            "time": ""
-        },
-        {
-            "id": 9,
-            "date": "",
-            "time": ""
-        }
-    ]
+                "id": 3,
+                "name": "Sepideh Vaziri",
+                "date": "",
+                "time": "",
+                "bookings": []
+            },
+            {
+                "id": 4,
+                "name": "Murat Acar",
+                "date": "",
+                "time": "",
+                "bookings": []
+            },
+            {
+                "id": 5,
+                "name": "Michel Gorjizadeh",
+                "date": "",
+                "time": "",
+                "bookings": []
+            },
+            {
+                "id": 6,
+                "name": "Johan Nihlén",
+                "date": "",
+                "time": "",
+                "bookings": []
+            },
+            {
+                "id": 7,
+                "name": "Jakob Malm",
+                "date": "",
+                "time": "",
+                "bookings": []
+            }
+        ],
+        "booking": [
+            {
+                "id": 8,
+                "date": "",
+                "time": ""
+            },
+            {
+                "id": 9,
+                "date": "",
+                "time": ""
+            }
+        ]
+    }
 }
