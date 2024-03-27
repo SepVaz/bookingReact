@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { ICleaners } from "../Cleaners";
+import { IBooking } from "../Booking";
 
 function MyPage() { //bookings för array, booking för objekt
-  const [cleaners, setCleaners] = useState<string[]>([]);
-  const [selectedCleaners, setSelectedCleaners] = useState<string[]>([]);
-  const [selectedCleaning, setSelectedCleaning] = useState<string>("Basic");
-  const [showBooking, setShowBooking] = useState<ICleaners[]>([]);
-  const [data, setData] = useState<ICleaners[]>([]); //använd till senare för att visa bokningarna
+  
+  const [showBookings, setShowBookings] = useState<IBooking[]>([]);
+  
   
   const location = useLocation();
   const navigate = useNavigate();
@@ -17,8 +15,8 @@ function MyPage() { //bookings för array, booking för objekt
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("/data.json");
-        const cleanersData = response.data.data.cleaner;
+        const response = await axios.get("/db.json");
+        setShowBookings = (response.data.data.cleaner;)
         const cleanersName = cleanersData.map((cleaner: string) => cleaner.name); 
         //aldrig any annars inte VG!!!
         setCleaners(cleanersName);
