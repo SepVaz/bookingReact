@@ -1,9 +1,9 @@
 {
-    "data": {
+    "data": { //bookings > array med objekt i
         "customer": [
             {
                 "id": 1,
-                "name": "Micke Ly",
+                "name": "Michael Jackson",
                 "bookings": []
             },
             {
@@ -12,7 +12,7 @@
                 "bookings": []
             }
         ],
-        "cleaner": [
+        "cleaner": [ //ta bort allt det här och ha bara en booking
             {
                 "id": 3,
                 "name": "Sepideh Vaziri",

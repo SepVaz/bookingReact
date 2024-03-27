@@ -3,12 +3,13 @@ import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ICleaners } from "../Cleaners";
 
-function MyPage() {
+function MyPage() { //bookings för array, booking för objekt
   const [cleaners, setCleaners] = useState<string[]>([]);
   const [selectedCleaners, setSelectedCleaners] = useState<string[]>([]);
   const [selectedCleaning, setSelectedCleaning] = useState<string>("Basic");
   const [showBooking, setShowBooking] = useState<ICleaners[]>([]);
   const [data, setData] = useState<ICleaners[]>([]); //använd till senare för att visa bokningarna
+  
   const location = useLocation();
   const navigate = useNavigate();
   const { name } = location.state || { name: "Användare" };
@@ -18,7 +19,8 @@ function MyPage() {
       try {
         const response = await axios.get("/data.json");
         const cleanersData = response.data.data.cleaner;
-        const cleanersName = cleanersData.map((cleaner: any) => cleaner.name);
+        const cleanersName = cleanersData.map((cleaner: string) => cleaner.name); 
+        //aldrig any annars inte VG!!!
         setCleaners(cleanersName);
       } catch (err) {
         console.error("fetch failed", err);
@@ -35,23 +37,26 @@ function MyPage() {
   //informerar typescript vilken typ av elemt händelsen hanteras för, typescript kan då ge bättre stöd när man skriver koden. gör också att vi undviker misstag om vi endast använder de egenskaper som metoden faktiskt är till för
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const addBooking = {
-      ...showBooking,
-      id: Date.now(), date: new Date().toLocaleDateString('sv-SE', { year: 'numeric', month: '2-digit', day: '2-digit' })
+
+    const addBooking: ICleaners = {
+      id: Date.now(),
+      date: new Date().toLocaleDateString("sv-SE", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+      })},
     };
 
     const createBooking = async () => {
       try {
-        const response = await axios.post('data.json', addBooking)
-        setShowBooking((prev) => [...prev, response.data.data.booking] )
+        const response = await axios.post("data.json", addBooking);
+        setShowBooking((prev) => [...prev, response.data.data.booking]);
       } catch (err) {
         console.log("Failed to create booking", err);
       }
-    }
+    };
     createBooking();
-  };
-
-  
+  }
 
   return (
     <div>

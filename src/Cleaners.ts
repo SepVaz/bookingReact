@@ -6,10 +6,11 @@ export interface Booking {
   time: string;
 }
 
-export interface ICleaners {
+export interface ICleaners { //ta bort och lägg till endast bokning
   id: number;
   name: string;
   bookings: Booking[];
+  date: string;
 }
 
 export const fetchData = async (setData: React.Dispatch<React.SetStateAction<ICleaners[]>>) => {
