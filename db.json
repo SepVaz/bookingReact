@@ -6,7 +6,7 @@
             "time": "07:40",
             "customer": "Frodo Baggins",
             "level": "BASIC",
-            "cleaner": "Sepideh",
+            "cleaner": "Michel",
             "status": false
         },
         {
@@ -15,7 +15,7 @@
             "time": "13:55",
             "customer": "Frodo Baggins",
             "level": "DIAMOND",
-            "cleaner": "Jakob",
+            "cleaner": "Murat",
             "status": false
         }, {
             "id": 3,
@@ -23,7 +23,7 @@
             "time": "18:30",
             "customer": "Frodo Baggins",
             "level": "DIAMOND",
-            "cleaner": "Jakob",
+            "cleaner": "Murat",
             "status": false
         }, {
             "id": 4,
@@ -55,7 +55,7 @@
             "time": "12:48",
             "customer": "Frodo Baggins",
             "level": "TOP",
-            "cleaner": "Jakob",
+            "cleaner": "Murat",
             "status": true
         }, {
             "id": 8,
@@ -63,7 +63,7 @@
             "time": "09:48",
             "customer": "Frodo Baggins",
             "level": "BASIC",
-            "cleaner": "Jakob",
+            "cleaner": "Johan",
             "status": true
         }, {
             "id": 9,
@@ -71,7 +71,7 @@
             "time": "08:00",
             "customer": "Frodo Baggins",
             "level": "WINDOW",
-            "cleaner": "Jakob",
+            "cleaner": "Michel",
             "status": true
         }
     ]
