@@ -2,10 +2,10 @@ import axios from "axios";
 
 // Define an enum for the possible levels
 export enum Level {
-  BASIC = "BASIC",
-  TOP = "TOP",
-  DIAMOND = "DIAMOND",
-  WINDOW = "WINDOW",
+  BASIC = "Basic",
+  TOP = "Top",
+  DIAMOND = "Diamond",
+  WINDOW = "Fönster",
 }
 
 export interface IBooking { //ta bort och lägg till endast bokning

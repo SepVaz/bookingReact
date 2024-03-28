@@ -13,7 +13,9 @@ function MyPage() {
 
   const [booked, setBooked] = useState<IBooking[]>([]);
   const [finished, setFinished] = useState<IBooking[]>([]);
-
+  const [cleaners, setCleaners] = useState<string[]>([]);
+  const [selectedCleaner, setSelectedCleaner] = useState("");
+  
   const bookingStatus = (booking: IBooking) => {
     if (booking.status === false) {
       setBooked([...booked, booking]);
@@ -33,6 +35,11 @@ function MyPage() {
         );
         setFinished(finishedBookings);
         setBooked(bookedBookings);
+
+        const cleanerNames = [
+          ...new Set(bookingsData.map((booking) => booking.cleaner)),
+        ];
+        setCleaners(cleanerNames);
       } catch (err) {
         console.error("fetch failed", err);
       }
@@ -41,10 +48,10 @@ function MyPage() {
     fetchData();
   }, []);
 
+  
   function handleLogout() {
     navigate("/");
   }
-
 
   return (
     <>
@@ -53,20 +60,32 @@ function MyPage() {
         <button onClick={handleLogout}>Gå tillbaka</button>
         <Booking bookingStatus={bookingStatus}></Booking>
         <div>
-                  
+          
         </div>
       </div>
-    
+
       <div>
-        BOOKED
+        <h3>Kommande städningar:</h3>
         {booked.map((booking) => (
-          <li key={booking.id}>{booking.cleaner}</li>
+          <li key={booking.id}>
+            <p>{booking.cleaner}</p>
+            <p>{booking.date}</p>
+            <p>{booking.time}</p>
+            <p>{booking.customer}</p>
+            <p>{booking.level}</p>
+          </li>
         ))}
       </div>
       <div>
-        FINISHED
+        <h3>Utförda städningar:</h3>
         {finished.map((booking) => (
-          <li key={booking.id}>{booking.cleaner}</li>
+          <li key={booking.id}>
+            <p>{booking.cleaner}</p>
+            <p>{booking.date}</p>
+            <p>{booking.time}</p>
+            <p>{booking.customer}</p>
+            <p>{booking.level}</p>
+          </li>
         ))}
       </div>
     </>

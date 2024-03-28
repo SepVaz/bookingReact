@@ -5,7 +5,7 @@
             "date": "2024-04-01",
             "time": "07:40",
             "customer": "Frodo Baggins",
-            "level": "BASIC",
+            "level": "Basic",
             "cleaner": "Michel",
             "status": false
         },
@@ -14,7 +14,7 @@
             "date": "2024-04-05",
             "time": "13:55",
             "customer": "Frodo Baggins",
-            "level": "DIAMOND",
+            "level": "Diamond",
             "cleaner": "Murat",
             "status": false
         }, {
@@ -22,7 +22,7 @@
             "date": "2024-04-07",
             "time": "18:30",
             "customer": "Frodo Baggins",
-            "level": "DIAMOND",
+            "level": "Fönster",
             "cleaner": "Murat",
             "status": false
         }, {
@@ -30,7 +30,7 @@
             "date": "2024-04-03",
             "time": "14:45",
             "customer": "Frodo Baggins",
-            "level": "DIAMOND",
+            "level": "Diamond",
             "cleaner": "Jakob",
             "status": false
         }, {
@@ -38,7 +38,7 @@
             "date": "2024-04-10",
             "time": "10:48",
             "customer": "Frodo Baggins",
-            "level": "DIAMOND",
+            "level": "Top",
             "cleaner": "Jakob",
             "status": false
         }, {
@@ -46,7 +46,7 @@
             "date": "2024-04-21",
             "time": "11:48",
             "customer": "Frodo Baggins",
-            "level": "DIAMOND",
+            "level": "Diamond",
             "cleaner": "Jakob",
             "status": true
         }, {
@@ -54,7 +54,7 @@
             "date": "2024-05-01",
             "time": "12:48",
             "customer": "Frodo Baggins",
-            "level": "TOP",
+            "level": "Top",
             "cleaner": "Murat",
             "status": true
         }, {
@@ -62,7 +62,7 @@
             "date": "2024-04-11",
             "time": "09:48",
             "customer": "Frodo Baggins",
-            "level": "BASIC",
+            "level": "Basic",
             "cleaner": "Johan",
             "status": true
         }, {
@@ -70,7 +70,7 @@
             "date": "2024-04-21",
             "time": "08:00",
             "customer": "Frodo Baggins",
-            "level": "WINDOW",
+            "level": "Fönster",
             "cleaner": "Michel",
             "status": true
         }
