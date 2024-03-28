@@ -1,17 +1,20 @@
 import React, { useState } from 'react'
 import { IBooking } from '../Booking';
-
-
+import axios from 'axios';
 
 interface Props {
     bookingStatus: (booking : IBooking) => void;
 }
 
-
+interface ICleaners {
+  cleaner: string,
+  id: number,
+}
 
 
 function Booking(props: Props) {
     
+  const [cleaners, setCleaners] = useState<ICleaners[]>([])
     const [showBookings, setShowBookings] = useState<IBooking[]>([]);
 
 
@@ -34,16 +37,16 @@ function Booking(props: Props) {
     const createBooking = async () => {
     try {
       const response = await axios.post("db.json", addBooking);
-      setShowBooking((prev) => [...prev, response.data.data.booking]);
+      setShowBookings((prev) => [...prev, response.data.booking]);
     } catch (err) {
       console.log("Failed to create booking", err);
     }
     createBooking();
   };
  
-  const handleChange = (event: React.FormEvent<HTMLFormElement>) => {
-    
-  }
+  /* const handleChange = (e: React.ChangeEvent<HTMLFormElement>) => {
+    setShowBookings(e.target.value)
+  } */
 
     
   return (
@@ -55,9 +58,9 @@ function Booking(props: Props) {
              
 
 
-              {showBookings.map((cleaner) => (
-                <option key={cleaner} value={cleaner}>
-                  {cleaner}
+              {cleaners.map((booking) => (
+                <option key={booking.id} value={booking.cleaner}>
+                  {booking.cleaner}
                 </option>
               ))}
             </select>
