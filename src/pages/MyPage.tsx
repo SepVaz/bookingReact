@@ -1,97 +1,73 @@
-import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import axios from "axios";
-import { IBooking } from "../Booking";
-import Booking from "./Booking";
-import { fetchData } from "./fetchApi";
+// components/MyPage.tsx
+import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import Booking from './Booking';
+import { IBooking } from '../Booking';
 
-function MyPage() {
-  //bookings för array, booking för objekt
-
+const MyPage: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { name } = location.state || { name: "Användare" };
+  const name = location.state?.name || 'Användare';
 
   const [booked, setBooked] = useState<IBooking[]>([]);
   const [finished, setFinished] = useState<IBooking[]>([]);
   const [cleaners, setCleaners] = useState<string[]>([]);
-  const [selectedCleaner, setSelectedCleaner] = useState("");
-  
+
   const bookingStatus = (booking: IBooking) => {
-    if (booking.status === false) {
-      setBooked([...booked, booking]);
-    } else setFinished([...finished, booking]);
+    booking.status ? setFinished((prev) => [...prev, booking]) : setBooked((prev) => [...prev, booking]);
   };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("/db.json");
-        const bookingsData = response.data.booking;
-        const finishedBookings = bookingsData.filter(
-          (booking: IBooking) => booking.status === true
-        ); // Här sätter vi ett filter i vår GET Fetch för att separera true och false
-        const bookedBookings = bookingsData.filter(
-          (booking: IBooking) => booking.status === false
-        );
-        setFinished(finishedBookings);
-        setBooked(bookedBookings);
-
-        const cleanerNames = [
-          ...new Set(bookingsData.map((booking) => booking.cleaner)),
-        ];
+        const response = await axios.get('db.json');
+        const bookingsData: IBooking[] = response.data.booking;
+        
+        setFinished(bookingsData.filter((booking) => booking.status));
+        setBooked(bookingsData.filter((booking) => !booking.status));
+        
+        const cleanerNames: string[] = Array.from(new Set(bookingsData.map((booking) => booking.cleaner)));
         setCleaners(cleanerNames);
       } catch (err) {
-        console.error("fetch failed", err);
+        console.error('Failed to fetch data', err);
       }
     };
 
     fetchData();
   }, []);
 
-  
-  function handleLogout() {
-    navigate("/");
-  }
+  const handleLogout = () => {
+    navigate('/');
+  };
 
-  const text = "Användarnamn:"
   return (
     <>
       <div>
         <h3>Välkommen till {name}s sida</h3>
         <button onClick={handleLogout}>Gå tillbaka</button>
-        <Booking text={text}bookingStatus={bookingStatus} cleaners={cleaners}></Booking>
-        <div>
-          
-        </div>
+        <Booking bookingStatus={bookingStatus} cleaners={cleaners} />
       </div>
 
       <div>
         <h3>Kommande städningar:</h3>
-        {booked.map((booking) => (
-          <li key={booking.id}>
-            <span>{booking.cleaner}</span>
-            <span>{booking.date}</span>
-            <span>{booking.time}</span>
-            <span>{booking.customer}</span>
-            <span>{booking.level}</span>
-          </li>
-        ))}
+        <ul>
+          {booked.map((booking) => (
+            <li key={booking.id}>{`${booking.cleaner} - ${booking.date} ${booking.time} - ${booking.customer} - ${booking.level}`}</li>
+          ))}
+        </ul>
       </div>
+
       <div>
         <h3>Utförda städningar:</h3>
-        {finished.map((booking) => (
-          <li key={booking.id}>
-            <span>{booking.cleaner}</span>
-           <span>{booking.date}</span>
-            <span>{booking.time}</span>
-            <span>{booking.customer}</span>
-            <span>{booking.level}</span>
-          </li>
-        ))}
+        <ul>
+          {finished.map((booking) => (
+            <li key={booking.id}>{`${booking.cleaner} - ${booking.date} ${booking.time} - ${booking.customer} - ${booking.level}`}</li>
+          ))}
+        </ul>
       </div>
     </>
   );
-}
+};
 
 export default MyPage;
