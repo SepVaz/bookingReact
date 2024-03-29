@@ -53,12 +53,13 @@ function MyPage() {
     navigate("/");
   }
 
+  const text = "Användarnamn:"
   return (
     <>
       <div>
         <h3>Välkommen till {name}s sida</h3>
         <button onClick={handleLogout}>Gå tillbaka</button>
-        <Booking bookingStatus={bookingStatus}></Booking>
+        <Booking text={text}bookingStatus={bookingStatus}></Booking>
         <div>
           
         </div>

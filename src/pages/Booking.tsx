@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { IBooking } from "../Booking";
 import axios from "axios";
+import MyPage from "./MyPage";
 
 interface Props {
   bookingStatus: (booking: IBooking) => void;
+  text: string
 }
 
 /* interface ICleaners {
@@ -49,12 +51,12 @@ function Booking(props: Props) {
 
   return (
     <div>
+      <h1>{props.text}</h1>
       <form onSubmit={handleSubmit}>
       <select onChange={(e) => setSelectedCleaner(e.target.value)} name="cleaner" id="" value={selectedCleaner}>
             <option value={cleaners} disabled selected hidden>
               Välj städare
             </option>
-
             {cleaners.map((cleaner) => (
               <option key={cleaner} value={cleaner}>
                 {cleaner}
