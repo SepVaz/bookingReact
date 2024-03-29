@@ -5,7 +5,8 @@ import MyPage from "./MyPage";
 
 interface Props {
   bookingStatus: (booking: IBooking) => void;
-  text: string
+  text: string;
+  
 }
 
 /* interface ICleaners {
@@ -13,12 +14,17 @@ interface Props {
 } */
 
 function Booking(props: Props) {
-  const [cleaners, setCleaners] = useState<string[]>([]);
+/*   const [cleaners, setCleaners] = useState<string[]>([]); */
   const [showBookings, setShowBookings] = useState<IBooking[]>([]);
   const [selectedCleaner, setSelectedCleaner] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedTime, setSelectedTime] = useState("");
   const [selectedLevel, setSelectedLevel] = useState("");
+
+  const { cleaners } = props;
+
+
+  
 
   console.log(setSelectedTime)
   //informerar typescript vilken typ av elemt händelsen hanteras för, typescript kan då ge bättre stöd när man skriver koden. gör också att vi undviker misstag om vi endast använder de egenskaper som metoden faktiskt är till för
@@ -27,12 +33,15 @@ function Booking(props: Props) {
 
     const addBooking: IBooking = {
       id: Date.now(),
-      date: new Date().toLocaleDateString("sv-SE", {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
-      }),
+      date: selectedDate,
+      time: selectedTime,
+      customer: "Frodo Baggins", 
+      level: selectedLevel,
+      cleaner: selectedCleaner,
+      status: false 
     };
+     
+    createBooking(addBooking);
   }
 
   const createBooking = async () => {
@@ -42,7 +51,6 @@ function Booking(props: Props) {
     } catch (err) {
       console.log("Failed to create booking", err);
     }
-    createBooking();
   };
 
   /* const handleChange = (e: React.ChangeEvent<HTMLFormElement>) => {
@@ -54,7 +62,7 @@ function Booking(props: Props) {
       <h1>{props.text}</h1>
       <form onSubmit={handleSubmit}>
       <select onChange={(e) => setSelectedCleaner(e.target.value)} name="cleaner" id="" value={selectedCleaner}>
-            <option value={cleaners} disabled selected hidden>
+            <option value="" disabled selected hidden>
               Välj städare
             </option>
             {cleaners.map((cleaner) => (

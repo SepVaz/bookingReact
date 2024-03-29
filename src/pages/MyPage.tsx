@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { IBooking } from "../Booking";
 import Booking from "./Booking";
+import { fetchData } from "./fetchApi";
 
 function MyPage() {
   //bookings för array, booking för objekt
@@ -59,7 +60,7 @@ function MyPage() {
       <div>
         <h3>Välkommen till {name}s sida</h3>
         <button onClick={handleLogout}>Gå tillbaka</button>
-        <Booking text={text}bookingStatus={bookingStatus}></Booking>
+        <Booking text={text}bookingStatus={bookingStatus} cleaners={cleaners}></Booking>
         <div>
           
         </div>
@@ -69,11 +70,11 @@ function MyPage() {
         <h3>Kommande städningar:</h3>
         {booked.map((booking) => (
           <li key={booking.id}>
-            <p>{booking.cleaner}</p>
-            <p>{booking.date}</p>
-            <p>{booking.time}</p>
-            <p>{booking.customer}</p>
-            <p>{booking.level}</p>
+            <span>{booking.cleaner}</span>
+            <span>{booking.date}</span>
+            <span>{booking.time}</span>
+            <span>{booking.customer}</span>
+            <span>{booking.level}</span>
           </li>
         ))}
       </div>
@@ -81,11 +82,11 @@ function MyPage() {
         <h3>Utförda städningar:</h3>
         {finished.map((booking) => (
           <li key={booking.id}>
-            <p>{booking.cleaner}</p>
-            <p>{booking.date}</p>
-            <p>{booking.time}</p>
-            <p>{booking.customer}</p>
-            <p>{booking.level}</p>
+            <span>{booking.cleaner}</span>
+           <span>{booking.date}</span>
+            <span>{booking.time}</span>
+            <span>{booking.customer}</span>
+            <span>{booking.level}</span>
           </li>
         ))}
       </div>
