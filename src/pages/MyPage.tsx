@@ -21,11 +21,11 @@ const MyPage: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('db.json');
-        const bookingsData: IBooking[] = response.data.booking;
+        const response = await axios.get('http://localhost:3000/booking');
+        const bookingsData: IBooking[] = response.data;
         
-        setFinished(bookingsData.filter((booking) => booking.status));
-        setBooked(bookingsData.filter((booking) => !booking.status));
+        setFinished(bookingsData.filter((data) => data.status));
+        setBooked(bookingsData.filter((data) => !data.status));
         
         const cleanerNames: string[] = Array.from(new Set(bookingsData.map((booking) => booking.cleaner)));
         setCleaners(cleanerNames);
