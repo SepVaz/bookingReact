@@ -6,7 +6,7 @@ export enum Level {
 }
 
 export interface IBooking { //ta bort och lägg till endast bokning
-  id: number;
+  id: string;
   time: string;
   date: string;
   customer: string;

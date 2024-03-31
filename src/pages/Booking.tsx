@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { IBooking, Level } from "../Booking";
+import { IBooking, Level } from "../BookingType";
 
 interface Props {
   bookingStatus: (booking: IBooking) => void;
@@ -17,7 +17,7 @@ const Booking: React.FC<Props> = ({ bookingStatus, cleaners }) => {
     e.preventDefault();
 
     const newBooking: IBooking = {
-      id: Date.now(),
+      id: Date.now().toString(),
       date: selectedDate,
       time: selectedTime,
       customer: "Frodo Baggins", 
