@@ -5,37 +5,56 @@ import { IBooking, Level } from "../BookingType";
 interface Props {
   bookingStatus: (booking: IBooking) => void;
   cleaners: string[];
+  booked: IBooking[]; // Lägg till denna rad
 }
 
-const Booking: React.FC<Props> = ({ bookingStatus, cleaners }) => {
+const Booking: React.FC<Props> = ({ bookingStatus, cleaners, booked }) => {
   const [selectedCleaner, setSelectedCleaner] = useState<string>("");
   const [selectedDate, setSelectedDate] = useState<string>("");
   const [selectedTime, setSelectedTime] = useState<string>("");
   const [selectedLevel, setSelectedLevel] = useState<Level>(Level.BASIC);
 
-  function handleSubmit (e: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     const newBooking: IBooking = {
       id: Date.now().toString(),
       date: selectedDate,
       time: selectedTime,
-      customer: "Frodo Baggins", 
+      customer: "Frodo Baggins",
       level: selectedLevel,
       cleaner: selectedCleaner,
       status: false,
     };
 
-    const createBooking = async () => {
-    try {
-      const response = await axios.post("http://localhost:3000/booking", newBooking);
-      bookingStatus({ ...newBooking, id: response.data.id });
-    } catch (err) {
-      console.error("Failed to create booking", err);
+    const hasDuplicate = booked.some(
+      (booking) =>
+        booking.date === newBooking.date &&
+        booking.time === newBooking.time &&
+        booking.cleaner === newBooking.cleaner
+    );
+
+    if (hasDuplicate) {
+      alert("A booking with the same date, time, and cleaner already exists.");
+      return;
     }
+
+    const createBooking = async () => {
+      try {
+        const response = await axios.post(
+          "http://localhost:3000/booking",
+          newBooking
+        );
+        bookingStatus({ ...newBooking, id: response.data.id });
+      } catch (err) {
+        console.error("Failed to create booking", err);
+      }
+    };
+    createBooking();
+   /*  setSelectedCleaner("");
+    setSelectedDate("");
+    setSelectedTime(""); */
   }
-  createBooking()
-  };
 
   return (
     <div>
@@ -44,6 +63,7 @@ const Booking: React.FC<Props> = ({ bookingStatus, cleaners }) => {
         <select
           value={selectedCleaner}
           onChange={(e) => setSelectedCleaner(e.target.value)}
+          required
         >
           <option value="" disabled>
             Välj städare
@@ -60,6 +80,7 @@ const Booking: React.FC<Props> = ({ bookingStatus, cleaners }) => {
           type="date"
           value={selectedDate}
           onChange={(e) => setSelectedDate(e.target.value)}
+          required
         />
 
         {/* Tid */}
@@ -67,6 +88,7 @@ const Booking: React.FC<Props> = ({ bookingStatus, cleaners }) => {
           type="time"
           value={selectedTime}
           onChange={(e) => setSelectedTime(e.target.value)}
+          required
         />
 
         {/* Städnivå */}

@@ -2,20 +2,14 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Landingpage() {
-  const [name, setName] = useState("");
   const navigate = useNavigate();
 
   function handleLogin() {
-    navigate("/mypage", { state: { name } });
+    navigate("/mypage");
   }
   return (
     <div>
-      <input
-        type="text"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        placeholder="Skriv ditt namn här..."
-      />
+
       <button onClick={handleLogin}> Logga in</button>
     </div>
   );

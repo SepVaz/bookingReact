@@ -60,7 +60,7 @@
       "time": "08:00",
       "customer": "Frodo Baggins",
       "level": "Fönster",
-      "cleaner": "Michel",
+      "cleaner": "Sepideh",
       "status": true
     },
     {
@@ -69,7 +69,7 @@
       "time": "08:00",
       "customer": "Frodo Baggins",
       "level": "Fönster",
-      "cleaner": "Michel",
+      "cleaner": "Sepideh",
       "status": true
     },
     {
@@ -81,5 +81,5 @@
       "cleaner": "Michel",
       "status": true
     }
-  ]
+]
 }

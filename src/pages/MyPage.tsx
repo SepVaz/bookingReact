@@ -1,14 +1,13 @@
 // components/MyPage.tsx
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Booking from "./Booking";
 import { IBooking } from "../BookingType";
 
 const MyPage: React.FC = () => {
-  const location = useLocation();
   const navigate = useNavigate();
-  const name = location.state?.name || "Användare";
+  const [customerName, setCustomerName] = useState<string>();
 
   const [booked, setBooked] = useState<IBooking[]>([]);
   const [finished, setFinished] = useState<IBooking[]>([]);
@@ -25,6 +24,10 @@ const MyPage: React.FC = () => {
       try {
         const response = await axios.get("http://localhost:3000/booking");
         const bookingsData: IBooking[] = response.data;
+
+        setCustomerName(
+          bookingsData.filter((data) => data.customer)[3]?.customer
+        );
 
         setFinished(bookingsData.filter((data) => data.status));
         setBooked(bookingsData.filter((data) => !data.status));
@@ -45,7 +48,7 @@ const MyPage: React.FC = () => {
     navigate("/");
   };
 
-  function handleDeleteBooking(id: string)  {
+  function handleDeleteBooking(id: string) {
     const deletePost = async () => {
       try {
         await axios.delete(`http://localhost:3000/booking/${id}`);
@@ -57,14 +60,16 @@ const MyPage: React.FC = () => {
     deletePost();
   }
 
-
-
   return (
     <>
       <div>
-        <h3>Välkommen till {name}s sida</h3>
+        <h3>Välkommen till {customerName}s sida</h3>
         <button onClick={handleLogout}>Gå tillbaka</button>
-        <Booking bookingStatus={bookingStatus} cleaners={cleaners} />
+        <Booking
+          bookingStatus={bookingStatus}
+          cleaners={cleaners}
+          booked={booked}
+        />
       </div>
 
       <div>
@@ -77,7 +82,9 @@ const MyPage: React.FC = () => {
                 onClick={() => {
                   handleDeleteBooking(booking.id);
                 }}
-              >Ta bort</button>
+              >
+                Ta bort
+              </button>
             </li>
           ))}
         </ul>
