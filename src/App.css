@@ -45,3 +45,9 @@ li {
   list-style: none;
 
 }
+
+img {
+  width: 25px;
+  height: 20px;
+  background-color: white;
+}

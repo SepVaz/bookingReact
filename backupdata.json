@@ -46,15 +46,6 @@
       "status": true
     },
     {
-      "id": "5",
-      "date": "2024-04-21",
-      "time": "08:00",
-      "customer": "Frodo Baggins",
-      "level": "Fönster",
-      "cleaner": "Michel",
-      "status": true
-    },
-    {
       "id": "6",
       "date": "2024-04-21",
       "time": "08:00",

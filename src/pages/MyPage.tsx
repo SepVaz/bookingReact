@@ -7,11 +7,12 @@ import { IBooking } from "../BookingType";
 
 const MyPage: React.FC = () => {
   const navigate = useNavigate();
-  const [customerName, setCustomerName] = useState<string>();
+  const [customerName, setCustomerName] = useState<string>("");
 
   const [booked, setBooked] = useState<IBooking[]>([]);
   const [finished, setFinished] = useState<IBooking[]>([]);
   const [cleaners, setCleaners] = useState<string[]>([]);
+  const [checked, setChecked] = useState<IBooking[]>([]);
 
   const bookingStatus = (booking: IBooking) => {
     booking.status
@@ -26,7 +27,7 @@ const MyPage: React.FC = () => {
         const bookingsData: IBooking[] = response.data;
 
         setCustomerName(
-          bookingsData.filter((data) => data.customer)[3]?.customer
+          bookingsData.filter((data) => data.customer)[0]?.customer
         );
 
         setFinished(bookingsData.filter((data) => data.status));
@@ -58,7 +59,26 @@ const MyPage: React.FC = () => {
       }
     };
     deletePost();
-  }
+  };
+
+  const handleCheckboxChange = (booking: IBooking) => {
+    setChecked((prev) =>
+      prev.find((b) => b.id === booking.id) ? prev.filter((b) => b.id !== booking.id) : [...prev, booking]
+    );
+  };
+
+
+  function deleteChecked(id: string) {
+    checked.forEach(async (booking) => {
+      try {
+        await axios.delete(`http://localhost:3000/booking/${booking.id}`);
+        setFinished((prev) => prev.filter((b) => b.id !== booking.id));
+      } catch (err) {
+        console.error("Failed to delete booking with id " + booking.id, err);
+      }
+    });
+    setChecked([]);
+  };
 
   return (
     <>
@@ -77,13 +97,13 @@ const MyPage: React.FC = () => {
         <ul>
           {booked.map((booking) => (
             <li key={booking.id}>
-              {`${booking.cleaner} - ${booking.date} ${booking.time} - ${booking.customer} - ${booking.level}`}
+              {`${booking.cleaner} - ${booking.date} ${booking.time} - ${booking.level}`}
               <button
                 onClick={() => {
                   handleDeleteBooking(booking.id);
                 }}
               >
-                Ta bort
+                🗑️
               </button>
             </li>
           ))}
@@ -93,12 +113,21 @@ const MyPage: React.FC = () => {
       <div>
         <h3>Utförda städningar:</h3>
         <ul>
-          {finished.map((booking) => (
-            <li
-              key={booking.id}
-            >{`${booking.cleaner} - ${booking.date} ${booking.time} - ${booking.customer} - ${booking.level}`}</li>
+        {finished.map((booking) => (
+            <li key={booking.id}>
+               <input
+                type="checkbox"
+                checked={checked.some((b) => b.id === booking.id)}
+                onChange={() => handleCheckboxChange(booking)}
+              />
+               {`${booking.cleaner} - ${booking.date} ${booking.time} - ${booking.level}`}
+             
+              {/* Booking information display */}
+            </li>
           ))}
         </ul>
+        <button onClick={deleteChecked}>Radera markerade</button>
+
       </div>
     </>
   );
