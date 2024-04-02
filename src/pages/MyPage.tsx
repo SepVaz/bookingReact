@@ -1,4 +1,5 @@
 
+  //Johan börjar 
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -13,13 +14,7 @@ const MyPage: React.FC = () => {
   const [finished, setFinished] = useState<IBooking[]>([]);
   const [cleaners, setCleaners] = useState<string[]>([]);
   const [checked, setChecked] = useState<IBooking[]>([]);
-
-  const bookingStatus = (booking: IBooking) => {
-    booking.status
-      ? setFinished((prev) => [...prev, booking])
-      : setBooked((prev) => [...prev, booking]);
-  };
-
+ 
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -33,8 +28,9 @@ const MyPage: React.FC = () => {
         setFinished(bookingsData.filter((data) => data.status));
         setBooked(bookingsData.filter((data) => !data.status));
 
+        // skapar en ny Array från db.json och skapar en ny unik Set av unika värden så att det blir unika namn från cleaner
         const cleanerNames: string[] = Array.from(
-          new Set(bookingsData.map((booking) => booking.cleaner))
+          new Set<string>(bookingsData.map((booking) => booking.cleaner))
         );
 
         setCleaners(cleanerNames);
@@ -46,10 +42,16 @@ const MyPage: React.FC = () => {
     fetchData();
   }, []);
 
-  const handleLogout = () => {
-    navigate("/");
+  // Hanterar om status på bokningen är true eller false och lägger i olika useState
+  const bookingStatus = (booking: IBooking) => {
+    booking.status
+      ? setFinished((prev) => [...prev, booking])
+      : setBooked((prev) => [...prev, booking]);
   };
 
+  //Johan slut
+
+//Murat börjar
   function handleDeleteBooking(id: string) {
     const deletePost = async () => {
       try {
@@ -60,14 +62,16 @@ const MyPage: React.FC = () => {
       }
     };
     deletePost();
-  };
+  }
 
+  
   const handleCheckboxChange = (booking: IBooking) => {
     setChecked((prev) =>
-      prev.find((b) => b.id === booking.id) ? prev.filter((b) => b.id !== booking.id) : [...prev, booking]
+      prev.find((b) => b.id === booking.id)
+        ? prev.filter((b) => b.id !== booking.id)
+        : [...prev, booking]
     );
   };
-
 
   function deleteChecked() {
     checked.forEach(async (booking) => {
@@ -79,13 +83,17 @@ const MyPage: React.FC = () => {
       }
     });
     setChecked([]);
+  }
+
+  const handleLogout = () => {
+    navigate("/");
   };
 
   return (
     <>
       <div>
         <h3>{customerName} bokningssida</h3>
-        
+{/* Johan tar */}
         <Booking
           bookingStatus={bookingStatus}
           cleaners={cleaners}
@@ -93,58 +101,62 @@ const MyPage: React.FC = () => {
           customerName={customerName}
         />
       </div>
+{/* Johan tar */}
+      <div>
+        <h3>Kommande städningar:</h3>
+        <ul className="booking">
+          {booked?.map((booking) => (
+            <li key={booking.id} className="booking-item">
+              <div className="booking-text">
+                <span className="cleaner">{booking.cleaner}</span>
+                <span className="date">{booking.date}</span>
+                <span className="time">{booking.time}</span>
+                <span className="level">{booking.level}</span>
+              </div>
+              <button
+                onClick={() => {
+                  handleDeleteBooking(booking.id);
+                }}
+              >
+                🗑️
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
 
       <div>
-  <h3>Kommande städningar:</h3>
-  <ul className="booking">
-    {booked.map((booking) => (
-      <li key={booking.id} className="booking-item">
-        <div className="booking-text">
-          <span className="cleaner">{booking.cleaner}</span>
-          <span className="date">{booking.date}</span>
-          <span className="time">{booking.time}</span>
-          <span className="level">{booking.level}</span>
+        <h3>Utförda städningar:</h3>
+        <ul className="booking">
+          {finished?.map((booking) => (
+            <li key={booking.id} className="booking-item">
+              <div className="booking-text">
+                <input
+                  className="booking-checkbox"
+                  type="checkbox"
+                  checked={checked.some((b) => b.id === booking.id)}
+                  onChange={() => handleCheckboxChange(booking)}
+                />
+                <span className="cleaner">{booking.cleaner}</span>
+                <span className="date">{booking.date}</span>
+                <span className="time">{booking.time}</span>
+                <span className="level">{booking.level}</span>
+              </div>
+            </li>
+          ))}
+        </ul>
+        <div className="mypage-btn-container">
+          <button className="button-mypage" onClick={deleteChecked}>
+            Radera markerade
+          </button>
+          <button className="button-mypage" onClick={handleLogout}>
+            Gå tillbaka
+          </button>
         </div>
-        <button
-          onClick={() => {
-            handleDeleteBooking(booking.id);
-          }}
-        >
-          🗑️
-        </button>
-      </li>
-    ))}
-  </ul>
-</div>
-
-
-<div>
-      <h3>Utförda städningar:</h3>
-      <ul className="booking">
-        {finished.map((booking) => (
-          <li key={booking.id} className="booking-item">
-            <div className="booking-text">
-              <input
-                className="booking-checkbox"
-                type="checkbox"
-                checked={checked.some((b) => b.id === booking.id)}
-                onChange={() => handleCheckboxChange(booking)}
-              />
-              <span className="cleaner">{booking.cleaner}</span>
-              <span className="date">{booking.date}</span>
-              <span className="time">{booking.time}</span>
-              <span className="level">{booking.level}</span>
-            </div>
-          </li>
-        ))}
-      </ul>
-      <div className="mypage-btn-container">
-      <button className="button-mypage" onClick={deleteChecked}>Radera markerade</button>
-      <button className="button-mypage" onClick={handleLogout}>Gå tillbaka</button>
       </div>
-    </div>
     </>
   );
 };
 
 export default MyPage;
+//Murat slutar

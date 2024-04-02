@@ -1,24 +1,6 @@
 {
   "booking": [
     {
-      "id": "1",
-      "date": "2024-04-01",
-      "time": "07:40",
-      "customer": "Frodo Baggins",
-      "level": "Basic",
-      "cleaner": "Michel",
-      "status": false
-    },
-    {
-      "id": "2",
-      "date": "2024-04-21",
-      "time": "11:48",
-      "customer": "Frodo Baggins",
-      "level": "Diamond",
-      "cleaner": "Jakob",
-      "status": false
-    },
-    {
       "id": "3",
       "date": "2024-05-01",
       "time": "12:48",
@@ -35,24 +17,6 @@
       "level": "Basic",
       "cleaner": "Johan",
       "status": false
-    },
-    {
-      "id": "5",
-      "date": "2024-04-21",
-      "time": "08:00",
-      "customer": "Frodo Baggins",
-      "level": "Fönster",
-      "cleaner": "Michel",
-      "status": true
-    },
-    {
-      "id": "6",
-      "date": "2024-04-21",
-      "time": "08:00",
-      "customer": "Frodo Baggins",
-      "level": "Fönster",
-      "cleaner": "Sepideh",
-      "status": true
     },
     {
       "id": "7",
@@ -160,6 +124,15 @@
       "customer": "Frodo Baggins",
       "level": "Window",
       "cleaner": "Jakob",
+      "status": false
+    },
+    {
+      "id": "1712060365805",
+      "date": "2024-04-09",
+      "time": "14:21",
+      "customer": "Frodo Baggins",
+      "level": "Basic",
+      "cleaner": "Michel",
       "status": false
     }
   ]

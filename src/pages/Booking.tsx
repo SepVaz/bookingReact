@@ -1,3 +1,5 @@
+// Sepideh
+
 import React, { useState } from "react";
 import axios from "axios";
 import { IBooking, Level } from "../BookingType";
@@ -51,7 +53,9 @@ const Booking: React.FC<Props> = ({ bookingStatus, cleaners, booked, customerNam
         console.error("Failed to create booking", err);
       }
     };
+
     createBooking();
+
    setSelectedCleaner("");
     setSelectedDate("");
     setSelectedTime("");
@@ -70,7 +74,7 @@ const Booking: React.FC<Props> = ({ bookingStatus, cleaners, booked, customerNam
           <option value="" disabled>
             Välj städare
           </option>
-          {cleaners.map((cleaner, id) => (
+          {cleaners?.map((cleaner, id) => (
             <option key={id} value={cleaner}>
               {cleaner}
             </option>
