@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Landingpage() {
@@ -7,12 +6,13 @@ function Landingpage() {
   function handleLogin() {
     navigate("/mypage");
   }
-  return (
-    <div>
+  return (<>
 
-      <button onClick={handleLogin}> Logga in</button>
+    <h3>Välkommen till Städa Fint</h3>
+    <div className="login-container">
+      <button className="login-btn" onClick={handleLogin}> Logga in</button>
     </div>
-  );
+    </>);
 }
 
 export default Landingpage;

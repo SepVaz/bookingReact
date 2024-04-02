@@ -57,8 +57,9 @@ const Booking: React.FC<Props> = ({ bookingStatus, cleaners, booked }) => {
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className="booking-form-container">
+      <form className="booking-form" 
+      onSubmit={handleSubmit}>
         {/* Städare */}
         <select
           value={selectedCleaner}
@@ -135,7 +136,7 @@ const Booking: React.FC<Props> = ({ bookingStatus, cleaners, booked }) => {
           </label>
         </div>
 
-        <button type="submit">Boka</button>
+        <button className="booking-btn" type="submit">Boka</button>
       </form>
     </div>
   );

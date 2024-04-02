@@ -1,53 +1,192 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+body {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  background-color: #e6e6fa;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h3 {
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.login-btn {
+  background-color: #8a2be2;
+  color: white;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-
-li {
+ul {
   list-style: none;
-
 }
 
-img {
-  width: 25px;
-  height: 20px;
-  background-color: white;
+.login-button:hover {
+  background-color: #9400d3;
+}
+
+.booking {
+  border: 1px solid #9370db; 
+  border-radius: 5px; 
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #d8bfd8;
+}
+
+.booking-checkboxes {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.booking-checkbox {
+  display: flex;
+  align-items: center;
+}
+
+.booking-checkbox-label {
+  margin-left: 5px;
+  font-size: 16px;
+  color: #333;
+}
+
+.booking-checkbox:checked + .booking-checkbox-label {
+  font-weight: bold;
+  color: #8a2be2;
+}
+
+.booking-item {
+  display: flex;
+  align-items: center;
+  border: 1px solid #110033;
+  border-radius: 5px; 
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #dbc0f0;
+  font-weight: bold;
+}
+
+.booking-item input[type="checkbox"] {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+.booking-item .text {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.booking-item button:hover {
+  background-color: #9370db;
+}
+
+.booking-item .booking-text {
+  flex: 1;
+}
+
+.booking-item button {
+  background-color: inherit;
+  border: none;
+  border-radius: 50%;
+  padding: 0px;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.booking-item .emoji {
+  margin-left: auto;
+  border-radius: 50%;
+}
+
+.booking-form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #d8bfd8;
+  border: 1px solid #9370db; 
+  border-radius: 5px; 
+}
+
+.booking-form {
+  padding: 20px;
+}
+
+.booking-form input[type="text"],
+.booking-form input[type="date"],
+.booking-form input[type="time"],
+.booking-form select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #9370db;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.booking-form label.radio {
+  display: inline-block;
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #9370db;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.booking-form input[type="radio"]:checked + label {
+  background-color: #8a2be2;
+  color: #fff;
+  border-color: #8a2be2;
+}
+
+.booking-form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #8a2be2;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.booking-form button:hover {
+  background-color: #1e1b3f;
+}
+
+button.booking-btn {
+  background-color: #8a2be2;
+  margin-top: 10px;
+}
+
+.button-mypage {
+  background-color: #8a2be2;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.mypage-btn-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.button-mypage {
+  margin: 0 10px;
+}
+
+button:hover {
+  background-color: #7a67cc;
+}
+
+.booking-text span {
+  margin-right: 50px;
 }

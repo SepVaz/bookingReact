@@ -1,4 +1,4 @@
-// components/MyPage.tsx
+
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -83,8 +83,8 @@ const MyPage: React.FC = () => {
   return (
     <>
       <div>
-        <h3>Välkommen till {customerName}s sida</h3>
-        <button onClick={handleLogout}>Gå tillbaka</button>
+        <h3>{customerName} bokningssida</h3>
+        
         <Booking
           bookingStatus={bookingStatus}
           cleaners={cleaners}
@@ -93,42 +93,54 @@ const MyPage: React.FC = () => {
       </div>
 
       <div>
-        <h3>Kommande städningar:</h3>
-        <ul>
-          {booked.map((booking) => (
-            <li key={booking.id}>
-              {`${booking.cleaner} - ${booking.date} ${booking.time} - ${booking.level}`}
-              <button
-                onClick={() => {
-                  handleDeleteBooking(booking.id);
-                }}
-              >
-                🗑️
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div>
+  <h3>Kommande städningar:</h3>
+  <ul className="booking">
+    {booked.map((booking) => (
+      <li key={booking.id} className="booking-item">
+        <div className="booking-text">
+          <span className="cleaner">{booking.cleaner}</span>
+          <span className="date">{booking.date}</span>
+          <span className="time">{booking.time}</span>
+          <span className="level">{booking.level}</span>
+        </div>
+        <button
+          onClick={() => {
+            handleDeleteBooking(booking.id);
+          }}
+        >
+          🗑️
+        </button>
+      </li>
+    ))}
+  </ul>
+</div>
 
-      <div>
-        <h3>Utförda städningar:</h3>
-        <ul>
+
+<div>
+      <h3>Utförda städningar:</h3>
+      <ul className="booking">
         {finished.map((booking) => (
-            <li key={booking.id}>
-               <input
+          <li key={booking.id} className="booking-item">
+            <div className="booking-text">
+              <input
+                className="booking-checkbox"
                 type="checkbox"
                 checked={checked.some((b) => b.id === booking.id)}
                 onChange={() => handleCheckboxChange(booking)}
               />
-               {`${booking.cleaner} - ${booking.date} ${booking.time} - ${booking.level}`}
-             
-              {/* Booking information display */}
-            </li>
-          ))}
-        </ul>
-        <button onClick={deleteChecked}>Radera markerade</button>
-
+              <span className="cleaner">{booking.cleaner}</span>
+              <span className="date">{booking.date}</span>
+              <span className="time">{booking.time}</span>
+              <span className="level">{booking.level}</span>
+            </div>
+          </li>
+        ))}
+      </ul>
+      <div className="mypage-btn-container">
+      <button className="button-mypage" onClick={deleteChecked}>Radera markerade</button>
+      <button className="button-mypage" onClick={handleLogout}>Gå tillbaka</button>
       </div>
+    </div>
     </>
   );
 };
