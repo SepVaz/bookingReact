@@ -36,6 +36,7 @@ const MyPage: React.FC = () => {
         const cleanerNames: string[] = Array.from(
           new Set(bookingsData.map((booking) => booking.cleaner))
         );
+
         setCleaners(cleanerNames);
       } catch (err) {
         console.error("Failed to fetch data", err);
@@ -68,7 +69,7 @@ const MyPage: React.FC = () => {
   };
 
 
-  function deleteChecked(id: string) {
+  function deleteChecked() {
     checked.forEach(async (booking) => {
       try {
         await axios.delete(`http://localhost:3000/booking/${booking.id}`);
@@ -89,6 +90,7 @@ const MyPage: React.FC = () => {
           bookingStatus={bookingStatus}
           cleaners={cleaners}
           booked={booked}
+          customerName={customerName}
         />
       </div>
 

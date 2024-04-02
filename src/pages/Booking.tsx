@@ -5,10 +5,11 @@ import { IBooking, Level } from "../BookingType";
 interface Props {
   bookingStatus: (booking: IBooking) => void;
   cleaners: string[];
-  booked: IBooking[]; // Lägg till denna rad
+  booked: IBooking[];
+  customerName: string;
 }
 
-const Booking: React.FC<Props> = ({ bookingStatus, cleaners, booked }) => {
+const Booking: React.FC<Props> = ({ bookingStatus, cleaners, booked, customerName }) => {
   const [selectedCleaner, setSelectedCleaner] = useState<string>("");
   const [selectedDate, setSelectedDate] = useState<string>("");
   const [selectedTime, setSelectedTime] = useState<string>("");
@@ -21,7 +22,7 @@ const Booking: React.FC<Props> = ({ bookingStatus, cleaners, booked }) => {
       id: Date.now().toString(),
       date: selectedDate,
       time: selectedTime,
-      customer: "Frodo Baggins",
+      customer: customerName,
       level: selectedLevel,
       cleaner: selectedCleaner,
       status: false,
@@ -51,9 +52,9 @@ const Booking: React.FC<Props> = ({ bookingStatus, cleaners, booked }) => {
       }
     };
     createBooking();
-   /*  setSelectedCleaner("");
+   setSelectedCleaner("");
     setSelectedDate("");
-    setSelectedTime(""); */
+    setSelectedTime("");
   }
 
   return (
