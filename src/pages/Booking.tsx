@@ -70,8 +70,8 @@ const Booking: React.FC<Props> = ({ bookingStatus, cleaners, booked, customerNam
           <option value="" disabled>
             Välj städare
           </option>
-          {cleaners.map((cleaner, index) => (
-            <option key={index} value={cleaner}>
+          {cleaners.map((cleaner, id) => (
+            <option key={id} value={cleaner}>
               {cleaner}
             </option>
           ))}
